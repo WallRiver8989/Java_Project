@@ -44,4 +44,10 @@ public class Branch {
         String sql = "DELETE FROM BRANCH WHERE ID="+id;
         cn.UpdateData(sql);
     }
+    
+    //Search Branch
+    public void SearchData(String id) throws SQLException{
+        String sql = "SELECT * FROM BRANCH WHERE ID="+id;
+        cn.UpdateData(sql);
+    }
 }

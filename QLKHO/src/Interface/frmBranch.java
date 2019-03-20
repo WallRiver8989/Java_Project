@@ -25,6 +25,9 @@ public class frmBranch extends javax.swing.JFrame {
     private boolean checkadd = true;
     private final DefaultTableModel tableModel = new DefaultTableModel();
     
+    private final frmSearchBranch frmsearch = new frmSearchBranch();
+ 
+    
     //Add Data to tableModel
     public void ShowData() throws SQLException{
         ResultSet result = branch.ShowAllBranch();
@@ -82,6 +85,7 @@ public class frmBranch extends javax.swing.JFrame {
     
     public frmBranch() throws SQLException {
         initComponents();
+               
         String []colsName = {"Mã","Tên NCC","Điện thoại","Địa chỉ"};
         
         //Set Title Col tableModel
@@ -124,8 +128,10 @@ public class frmBranch extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBranch = new javax.swing.JTable();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Các Nhà Cung Cấp");
@@ -142,7 +148,8 @@ public class frmBranch extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Địa chỉ:");
 
-        btnAdd.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(102, 102, 255));
         btnAdd.setText("Thêm");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,7 +157,8 @@ public class frmBranch extends javax.swing.JFrame {
             }
         });
 
-        btnDel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnDel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDel.setForeground(new java.awt.Color(102, 102, 255));
         btnDel.setText("Xóa");
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +166,8 @@ public class frmBranch extends javax.swing.JFrame {
             }
         });
 
-        btnEdit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEdit.setForeground(new java.awt.Color(102, 102, 255));
         btnEdit.setText("Sửa");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +175,8 @@ public class frmBranch extends javax.swing.JFrame {
             }
         });
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(102, 102, 255));
         btnSave.setText("Lưu");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +184,8 @@ public class frmBranch extends javax.swing.JFrame {
             }
         });
 
-        btnUnsave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnUnsave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnUnsave.setForeground(new java.awt.Color(102, 102, 255));
         btnUnsave.setText("K.Lưu");
         btnUnsave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,7 +193,8 @@ public class frmBranch extends javax.swing.JFrame {
             }
         });
 
-        btnCancel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(102, 102, 255));
         btnCancel.setText("Thoát");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,6 +229,15 @@ public class frmBranch extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableBranch);
 
+        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearch.setForeground(new java.awt.Color(102, 102, 255));
+        btnSearch.setText("Tìm");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,9 +258,11 @@ public class frmBranch extends javax.swing.JFrame {
                     .addComponent(txtAddressBranch, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(105, 105, 105))
             .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
+                        .addGap(17, 17, 17)
                         .addComponent(btnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDel)
@@ -250,11 +273,10 @@ public class frmBranch extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUnsave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addComponent(btnSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancel)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,20 +299,22 @@ public class frmBranch extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAddressBranch)
                     .addComponent(jLabel5))
-                .addGap(31, 31, 31)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdd)
                     .addComponent(btnDel)
                     .addComponent(btnEdit)
                     .addComponent(btnSave)
                     .addComponent(btnUnsave)
-                    .addComponent(btnCancel))
-                .addGap(44, 44, 44)
+                    .addComponent(btnCancel)
+                    .addComponent(btnSearch))
+                .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     //Cancel Button
@@ -411,6 +435,12 @@ public class frmBranch extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Thao tác không thành công!","Thông báo",1);
         }
     }//GEN-LAST:event_btnDelActionPerformed
+    
+    //Search Button
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        frmsearch.setVisible(true);
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -456,6 +486,7 @@ public class frmBranch extends javax.swing.JFrame {
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUnsave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
