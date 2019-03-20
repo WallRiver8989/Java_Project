@@ -18,7 +18,7 @@ public class Connect {
         try {
             String userName ="sa";
             String password = "123";
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=QLKho;";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=QLKHO;";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = java.sql.DriverManager.getConnection(url,userName,password);
         }
