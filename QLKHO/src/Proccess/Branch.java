@@ -46,8 +46,13 @@ public class Branch {
     }
     
     //Search Branch
-    public void SearchData(String id) throws SQLException{
-        String sql = "SELECT * FROM BRANCH WHERE ID="+id;
-        cn.UpdateData(sql);
+    public ResultSet SearchDataByID(String id) throws SQLException{
+        String sql = "SELECT * FROM BRANCH WHERE ID LIKE'%"+id+"%'";
+        return cn.LoadData(sql);
+    }
+    
+    public ResultSet SearchDataByName(String name) throws SQLException{
+        String sql = "SELECT * FROM BRANCH WHERE Name LIKE'%"+name+"%'";
+        return cn.LoadData(sql);
     }
 }

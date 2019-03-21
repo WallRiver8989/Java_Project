@@ -126,6 +126,7 @@ public class frmStaff extends javax.swing.JFrame {
         txtStaffID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Nhân Viên");
         setLocation(new java.awt.Point(700, 100));
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
@@ -327,6 +328,7 @@ public class frmStaff extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     //Add button
@@ -344,6 +346,8 @@ public class frmStaff extends javax.swing.JFrame {
     //exit button
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         this.dispose();
+        frmMain f = new frmMain();
+        f.setVisible(true);
     }//GEN-LAST:event_btnExitActionPerformed
 
      //mouse click

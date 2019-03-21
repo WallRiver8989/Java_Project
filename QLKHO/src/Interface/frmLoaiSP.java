@@ -112,6 +112,7 @@ public final class frmLoaiSP extends javax.swing.JFrame {
         txtCateID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Loại SP");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setText("CATEGORY");
@@ -157,6 +158,11 @@ public final class frmLoaiSP extends javax.swing.JFrame {
         btnThoat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnThoatMouseClicked(evt);
+            }
+        });
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
             }
         });
 
@@ -361,6 +367,13 @@ public final class frmLoaiSP extends javax.swing.JFrame {
         setKhoa(true);         
         setButton(true);
     }//GEN-LAST:event_btnKLuuMouseClicked
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        frmMain f = new frmMain();
+        f.setVisible(true);
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     /**
      * @param args the command line arguments

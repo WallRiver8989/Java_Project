@@ -48,22 +48,44 @@ public class frmSearchBranch extends javax.swing.JFrame {
     //Show Result
     public void ShowResult() throws SQLException{
         String text = this.txtSearchBranch.getText();
-        ResultSet result = branch.ShowBranch(text);
-        try{
-            while(result.next()){                // nếu còn đọc tiếp được một dòng dữ liệu
-                String rows[] = new String[4];
-                rows[0] = result.getString(1);   // lấy dữ liệu tại cột số 1 (ứng với mã)
-                rows[1] = result.getString(2);   // lấy dữ liệu tai cột số 2 ứng với tên 
-                rows[2] = result.getString(3);   // lấy dữ liệu tại cột số 1 (ứng với dt)
-                rows[3] = result.getString(4);   // lấy dữ liệu tai cột số 2 ứng với tên địa chỉ 
-                
-                tableModel.addRow(rows);          // đưa dòng dữ liệu vào tableModel 
-                //mỗi lần có sự thay đổi dữ liệu ở tableModel thì Jtable sẽ tự động update 
+        
+        if(radioID.isSelected()==true){
+            ResultSet result = branch.SearchDataByID(text);
+            try{
+                while(result.next()){                // nếu còn đọc tiếp được một dòng dữ liệu
+                    String rows[] = new String[4];
+                    rows[0] = result.getString(1);   // lấy dữ liệu tại cột số 1 (ứng với mã)
+                    rows[1] = result.getString(2);   // lấy dữ liệu tai cột số 2 ứng với tên 
+                    rows[2] = result.getString(3);   // lấy dữ liệu tại cột số 1 (ứng với dt)
+                    rows[3] = result.getString(4);   // lấy dữ liệu tai cột số 2 ứng với tên địa chỉ 
+
+                    tableModel.addRow(rows);          // đưa dòng dữ liệu vào tableModel 
+                    //mỗi lần có sự thay đổi dữ liệu ở tableModel thì Jtable sẽ tự động update 
+                }
+            }
+            catch(SQLException e){
+
             }
         }
-        catch(SQLException e){
-            
+        else{
+            ResultSet result = branch.SearchDataByName(text);
+            try{
+                while(result.next()){                // nếu còn đọc tiếp được một dòng dữ liệu
+                    String rows[] = new String[4];
+                    rows[0] = result.getString(1);   // lấy dữ liệu tại cột số 1 (ứng với mã)
+                    rows[1] = result.getString(2);   // lấy dữ liệu tai cột số 2 ứng với tên 
+                    rows[2] = result.getString(3);   // lấy dữ liệu tại cột số 1 (ứng với dt)
+                    rows[3] = result.getString(4);   // lấy dữ liệu tai cột số 2 ứng với tên địa chỉ 
+
+                    tableModel.addRow(rows);          // đưa dòng dữ liệu vào tableModel 
+                    //mỗi lần có sự thay đổi dữ liệu ở tableModel thì Jtable sẽ tự động update 
+                }
+            }
+            catch(SQLException e){
+
+            }
         }
+        
     }
     
     //Clear Data in tableModel
@@ -72,16 +94,6 @@ public class frmSearchBranch extends javax.swing.JFrame {
         for(int i=n;i>=0;i--){
             tableModel.removeRow(i);
         }
-    }
-    
-    //Set Radio Button
-    public void SetRadioButton(){
-       if(radioID.isSelected()==true){
-           radioName.setSelected(false);
-       }
-       if(radioName.isSelected()==true){
-           radioID.setSelected(false);
-       }
     }
     
     public frmSearchBranch() throws SQLException {
@@ -95,8 +107,9 @@ public class frmSearchBranch extends javax.swing.JFrame {
         tableSearchBranch.setModel(tableModel);
         
         //Show Data
+        ClearData();
         ShowData();
-        SetRadioButton();
+     
     }
 
     /**
@@ -108,6 +121,7 @@ public class frmSearchBranch extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableSearchBranch = new javax.swing.JTable();
         txtSearchBranch = new javax.swing.JTextField();
@@ -118,6 +132,7 @@ public class frmSearchBranch extends javax.swing.JFrame {
         radioName = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tìm kiếm Nhà Cung Cấp");
 
         tableSearchBranch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -163,8 +178,11 @@ public class frmSearchBranch extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(radioID);
+        radioID.setSelected(true);
         radioID.setText("Theo Mã");
 
+        buttonGroup1.add(radioName);
         radioName.setText("Theo Tên");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -226,8 +244,14 @@ public class frmSearchBranch extends javax.swing.JFrame {
     
     //Back Button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            frmBranch frmbranch = new frmBranch();
+            frmbranch.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmBranch.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
     
     //Search Button
@@ -239,9 +263,10 @@ public class frmSearchBranch extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Vui lòng kiểm tra lại thông tin cần tìm!","Thông báo",1);
             }  
             else{
-               branch.SearchData(text);
-               ClearData();
-               ShowResult();
+               
+                ClearData();
+                ShowResult();
+          
             }           
         }
         catch(SQLException e){
@@ -283,6 +308,7 @@ public class frmSearchBranch extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
