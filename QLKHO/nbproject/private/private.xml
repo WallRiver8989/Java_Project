@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/IT/Java/BOSS/Java_Project/QLKHO/src/Interface/frmAddProduct.java</file>
-            <file>file:/F:/IT/Java/BOSS/Java_Project/QLKHO/src/Interface/frmSubtract.java</file>
-            <file>file:/F:/IT/Java/BOSS/Java_Project/QLKHO/src/Interface/frmMain.java</file>
+            <file>file:/F:/IT/Java/BOSS/Java_Project/QLKHO/src/Interface/frmContact.java</file>
+            <file>file:/F:/IT/Java/BOSS/Java_Project/QLKHO/src/Proccess/Contact.java</file>
+            <file>file:/F:/IT/Java/BOSS/Java_Project/QLKHO/src/Interface/frmUpdateContact.java</file>
+            <file>file:/F:/IT/Java/BOSS/Java_Project/QLKHO/src/Interface/frmBranch.java</file>
         </group>
     </open-files>
 </project-private>

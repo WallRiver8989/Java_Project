@@ -16,7 +16,14 @@ public class Contact {
     
     //Querry
     public ResultSet ShowContact() throws SQLException{
-        String sql = "SELECT * FROM CONTACT WHERE ID =" + 1 + "";
-        return cn.LoadData(sql);
+        cn.connectSQL();
+        String sql = "SELECT * FROM CONTACT WHERE ID =" + 1;
+        return cn.LoadData(sql);  
     }
+    
+    //
+    public void EditData(String name, String tel, String email, String address) throws SQLException{               
+        String sql = "Update CONTACT set NameGroup=N'" + name + "', Tel='"+tel+"', Email=N'"+email+"', AddressGroup=N'"+address+"' where ID=" + 1;                    
+        cn.UpdateData(sql);         
+    } 
 }

@@ -23,31 +23,22 @@ public class frmContact extends javax.swing.JFrame {
      */
     
     private final Contact contact = new Contact();
-    private boolean checkadd = true;
-    private final DefaultTableModel tableModel = new DefaultTableModel();
     
     //Add Data to tableModel
     public void ShowData() throws SQLException{
         ResultSet result = contact.ShowContact();
-        try{
-            while(result.next()){                // nếu còn đọc tiếp được một dòng dữ liệu
-                String rows[] = new String[4];
-                rows[0] = result.getString(1);   // lấy dữ liệu tại cột số 1 (ứng với mã)
-                rows[1] = result.getString(2);   // lấy dữ liệu tai cột số 2 ứng với tên 
-                rows[2] = result.getString(3);   // lấy dữ liệu tại cột số 1 (ứng với dt)
-                rows[3] = result.getString(4);   // lấy dữ liệu tai cột số 2 ứng với tên địa chỉ 
-                
-                tableModel.addRow(rows);          // đưa dòng dữ liệu vào tableModel 
-                //mỗi lần có sự thay đổi dữ liệu ở tableModel thì Jtable sẽ tự động update 
-            }
-        }
-        catch(SQLException e){
-            
+        if(result.next()){
+            this.lbName.setText(result.getString("NameGroup"));
+            this.lbTel.setText(result.getString("Tel"));
+            this.lbAddress.setText(result.getString("AddressGroup"));
+            this.lbEmail.setText(result.getString("Email"));
         }
     }
     
-    public frmContact() {
+    public frmContact() throws SQLException {
         initComponents();
+        
+        ShowData();
     }
 
     /**
@@ -70,15 +61,22 @@ public class frmContact extends javax.swing.JFrame {
         setTitle("Liên Hệ");
 
         lbName.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        lbName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbName.setText("US");
+        lbName.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         lbTel.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        lbTel.setText("012345");
+        lbTel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbTel.setText("0912345678");
 
         lbEmail.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        lbEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbEmail.setText("us@gmai.com");
+        lbEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbEmail.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lbAddress.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        lbAddress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbAddress.setText("Somewhere in SG");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -101,41 +99,40 @@ public class frmContact extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lbAddress)
-                .addGap(137, 137, 137))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbTel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(lbName))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(93, 93, 93)
                         .addComponent(jButton1)
                         .addGap(30, 30, 30)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(lbEmail)))
-                .addContainerGap(117, Short.MAX_VALUE))
+                        .addGap(112, 112, 112)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbAddress, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lbEmail)
+                                .addGap(14, 14, 14))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lbName)
+                                .addGap(56, 56, 56))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(lbTel)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(59, 59, 59)
                 .addComponent(lbName)
-                .addGap(27, 27, 27)
-                .addComponent(lbTel)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbEmail)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(lbAddress)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lbTel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -156,16 +153,20 @@ public class frmContact extends javax.swing.JFrame {
 
     //Update
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        frmUpdateContact f = new frmUpdateContact();
-        f.setVisible(true);
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            frmUpdateContact f = new frmUpdateContact();
+            f.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmContact.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -190,11 +191,8 @@ public class frmContact extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmContact().setVisible(true);
-            }
-        });
+        frmContact f = new frmContact();
+        f.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
