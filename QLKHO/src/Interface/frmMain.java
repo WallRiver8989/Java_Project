@@ -50,7 +50,6 @@ public class frmMain extends javax.swing.JFrame {
         btnAdmin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAdmin.setForeground(new java.awt.Color(0, 153, 153));
         btnAdmin.setText("Admin");
-        btnAdmin.setMaximumSize(new java.awt.Dimension(77, 25));
         btnAdmin.setPreferredSize(new java.awt.Dimension(110, 25));
         btnAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +71,11 @@ public class frmMain extends javax.swing.JFrame {
         btnProduct.setForeground(new java.awt.Color(0, 153, 153));
         btnProduct.setText("Sản Phẩm");
         btnProduct.setPreferredSize(new java.awt.Dimension(110, 25));
+        btnProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductActionPerformed(evt);
+            }
+        });
 
         btnBranch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBranch.setForeground(new java.awt.Color(0, 153, 153));
@@ -129,6 +133,11 @@ public class frmMain extends javax.swing.JFrame {
         btnProduct1.setForeground(new java.awt.Color(0, 153, 153));
         btnProduct1.setText("Xuất SP");
         btnProduct1.setPreferredSize(new java.awt.Dimension(110, 25));
+        btnProduct1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProduct1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,6 +264,24 @@ public class frmMain extends javax.swing.JFrame {
         frmAddProduct f = new frmAddProduct();
         f.setVisible(true);
     }//GEN-LAST:event_btnCate1ActionPerformed
+
+    private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            frProduct f = new frProduct();
+            f.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnProductActionPerformed
+
+    private void btnProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduct1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        frmSubtract f = new frmSubtract();
+        f.setVisible(true);
+    }//GEN-LAST:event_btnProduct1ActionPerformed
 
     /**
      * @param args the command line arguments

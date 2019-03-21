@@ -233,6 +233,11 @@ public class frProduct extends javax.swing.JFrame {
                 btnExitMouseClicked(evt);
             }
         });
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setText("ID :");
@@ -447,6 +452,13 @@ public class frProduct extends javax.swing.JFrame {
         }
         catch (SQLException e) {         }
     }//GEN-LAST:event_jTableProductMouseClicked
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        frmMain f = new frmMain();
+        f.setVisible(true);
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments

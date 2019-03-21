@@ -22,8 +22,15 @@ public class ExportImportProduct {
         return cn.LoadData(sql);         
     }  
      
+    //Get Info Product
+    public ResultSet GetInfoProduct(String id) throws SQLException{               
+        cn.connectSQL();            
+        String sql = "SELECT * FROM PRODUCT WHERE ID ="+id;                    
+        return cn.LoadData(sql);         
+    }  
+    
     //Export
-    public void ExportData(String id,String quantity) throws SQLException{               
+    public void ExportData(String id,int quantity) throws SQLException{               
         String sql = "UPDATE PRODUCT SET Quantity="+quantity+"WHERE ID ="+id;
         cn.UpdateData(sql);         
     } 

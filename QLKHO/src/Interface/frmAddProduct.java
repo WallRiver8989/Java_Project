@@ -37,6 +37,8 @@ public class frmAddProduct extends javax.swing.JFrame {
         }
     }
     
+   
+    
     public frmAddProduct() {
         initComponents();
         ShowDataCombo();
@@ -67,7 +69,7 @@ public class frmAddProduct extends javax.swing.JFrame {
         spinnderQuantity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         btnOk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnOk.setText("Thêm");
+        btnOk.setText("Nhập");
         btnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOkActionPerformed(evt);
@@ -154,19 +156,33 @@ public class frmAddProduct extends javax.swing.JFrame {
 
     
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        // TODO add your handling code here:
-        String id = cbbName.getSelectedItem().toString();
-        String quantity = spinnderQuantity.getValue().toString();
-        
-        try{
-            exproduct.ExportData(id, quantity);
-            JOptionPane.showMessageDialog(null,"Thao tác thành công","Thông báo",1);
-            this.dispose();
-            frmMain f = new frmMain();
-            f.setVisible(true);
+        try{                                      
+            // TODO add your handling code here:
+            String id = cbbName.getSelectedItem().toString();
+            int quantity = (int) spinnderQuantity.getValue();
+            
+            //Get Data Product by id
+            ResultSet rs = exproduct.GetInfoProduct(id);
+            
+            if(rs.next()){
+                int q = Integer.parseInt(rs.getString("Quantity"));
+                
+                try{
+                    int qa = quantity + q;
+                    exproduct.ExportData(id, qa);
+                    JOptionPane.showMessageDialog(null,"Thao tác thành công","Thông báo",1);
+                    this.dispose();
+                    frmMain f = new frmMain();
+                    f.setVisible(true);
+                }
+                catch(SQLException e){
+                    JOptionPane.showMessageDialog(null,"Thao tác không thành công","Thông báo",1);
+                }
+            }
+            
         }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Thao tác không thành công","Thông báo",1);
+        catch(SQLException ex){
+            Logger.getLogger(frmAddProduct.class.getName()).log(Level.SEVERE,null, ex);
         }
     }//GEN-LAST:event_btnOkActionPerformed
 
