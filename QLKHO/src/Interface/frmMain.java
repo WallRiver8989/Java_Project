@@ -255,9 +255,14 @@ public class frmMain extends javax.swing.JFrame {
 
     //Contact Button
     private void btnContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContactActionPerformed
-        // TODO add your handling code here:
-        frmContact f = new frmContact();
-        f.setVisible(true);
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            frmContact f = new frmContact();
+            f.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnContactActionPerformed
 
     private void btnCate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCate1ActionPerformed
